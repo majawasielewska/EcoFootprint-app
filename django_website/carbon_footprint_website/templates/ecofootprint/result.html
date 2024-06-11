@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Carbon Footprint Result</title>
+</head>
+<body>
+    <h1>Your Carbon Footprint Result</h1>
+    <p>Name: {{ entry.user_name }}</p>
+    <p>Energy Consumption: {{ entry.energy_consumption }} kWh</p>
+    <p>Meat Consumption: {{ entry.meat_consumption }} kg per week</p>
+    <p>Travel Distance: {{ entry.travel_distance }} km per week</p>
+    <p>Waste Production: {{ entry.waste_production }} kg per week</p>
+    <h2>Total Carbon Footprint: {{ total_footprint }} kg CO2 per week</h2>
+</body>
+</html>
