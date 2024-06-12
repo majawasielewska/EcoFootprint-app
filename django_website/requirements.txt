@@ -6,3 +6,5 @@ google-cloud-secret-manager==2.9.0
 google-auth==2.3.3
 psycopg2==2.9.1
 dj-database-url
+cloud-sql-python-connector
+pg8000

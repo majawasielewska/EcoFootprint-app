@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os 
+from google.cloud.sql.connector import Connector
+import pg8000
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,10 +29,14 @@ SECRET_KEY = 'django-insecure-xj@&8epl=31emqy#b4=+$a6p05ytx81!qt19@3(-u7#^-2us8v
 DEBUG = True
 
 # ALLOWED_HOSTS = [
-# 	'footprintapp-cc-2024l.ew.r.appspot.com'
+# 	
 # ]
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'localhost',
+    'footprintapp-cc-2024l.ew.r.appspot.com'
+    ]
 
 
 
@@ -86,10 +92,35 @@ WSGI_APPLICATION = 'footprint_webapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+def get_postgresql_connection():
+    connector = Connector()
+    conn = connector.connect(
+        os.environ["INSTANCE_CONNECTION_NAME"],
+        "pg8000",
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        db=os.environ["DB_NAME"],
+    )
+    return conn
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ["DB_NAME"],
+        'USER': os.environ["DB_USER"],
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': os.environ["DB_HOST"],
+        'PORT': os.environ["DB_PORT"],
+        #'OPTIONS': {
+        #    'connection': get_postgresql_connection,
+        #}
     }
 }
 
