@@ -2,14 +2,54 @@
 <html>
 <head>
     <title>Your Carbon Footprint Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 50%;
+        }
+        h1 {
+            color: #4682b4;
+        }
+        p {
+            font-size: 0.9em; /* Smaller font size for detail text */
+        }
+        .total-footprint {
+            font-size: 1.2em; /* Slightly larger for emphasis */
+            margin-top: 20px;
+        }
+        .low-footprint {
+            color: #32cd32; /* Green */
+        }
+        .high-footprint {
+            color: #ff0000; /* Red */
+        }
+    </style>
 </head>
 <body>
-    <h1>Your Carbon Footprint Result</h1>
-    <p>Name: {{ entry.user_name }}</p>
-    <p>Energy Consumption: {{ entry.energy_consumption }} kWh</p>
-    <p>Meat Consumption: {{ entry.meat_consumption }} kg per week</p>
-    <p>Travel Distance: {{ entry.travel_distance }} km per week</p>
-    <p>Waste Production: {{ entry.waste_production }} kg per week</p>
-    <h2>Total Carbon Footprint: {{ total_footprint }} kg CO2 per week</h2>
+    <div class="container">
+        <h1>Your Carbon Footprint Result</h1>
+        <p>Name: <strong>{{ entry.user_name }}</strong></p>
+        <p>Energy Consumption: <strong>{{ entry.energy_consumption }} kWh</strong></p>
+        <p>Meat Consumption: <strong>{{ entry.meat_consumption }} kg per week</strong></p>
+        <p>Travel Distance: <strong>{{ entry.travel_distance }} km per week</strong></p>
+        <p>Waste Production: <strong>{{ entry.waste_production }} kg per week</strong></p>
+        <p class="total-footprint {% if total_footprint > 100 %}high-footprint{% else %}low-footprint{% endif %}">
+            Total Carbon Footprint: <strong>{{ total_footprint }} kg CO2 per week</strong>
+        </p>
+    </div>
 </body>
 </html>
