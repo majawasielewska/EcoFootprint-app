@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calculate Your Carbon Footprint</title>
+    <title>Calculate your carbon footprint!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b8face;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 50%;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        form p {
+            font-size: 0.9em; /* Smaller font size for form labels */
+        }
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Calculate Your Carbon Footprint</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Calculate your carbon footprint!</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
