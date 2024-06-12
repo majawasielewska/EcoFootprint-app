@@ -21,13 +21,23 @@ Including another URLconf
 #     path('admin/', admin.site.urls),
 # ]
 
+# from django.contrib import admin
+# from django.urls import path, include
+# from django.views.generic import RedirectView
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('footprint_webapp/', include('footprint_webapp.urls')),
+#     path('', RedirectView.as_view(url='/footprint_webapp/', permanent=True)),  # Add this line to redirect root URL
+# ]
+
+# footprint_webapp/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('footprint_webapp/', include('footprint_webapp.urls')),
-    path('', RedirectView.as_view(url='/footprint_webapp/', permanent=True)),  # Add this line to redirect root URL
+    path('ecofootprint/', include('carbon_footprint_website.urls')),
 ]
 

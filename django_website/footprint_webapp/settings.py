@@ -26,9 +26,12 @@ SECRET_KEY = 'django-insecure-xj@&8epl=31emqy#b4=+$a6p05ytx81!qt19@3(-u7#^-2us8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-	'footprintapp-cc-2024l.ew.r.appspot.com'
-]
+# ALLOWED_HOSTS = [
+# 	'footprintapp-cc-2024l.ew.r.appspot.com'
+# ]
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -40,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'footprint_webapp',
+    'carbon_footprint_website',
 	
 ]
 
@@ -58,11 +61,13 @@ ROOT_URLCONF = 'footprint_webapp.urls'
 
 # BASE_DIR / 'ecofootprint/templates' ?????
 
+
+ROOT_URLCONF = 'footprint_webapp.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'carbon_footprint_website' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
