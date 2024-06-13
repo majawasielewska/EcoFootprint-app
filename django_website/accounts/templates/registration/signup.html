@@ -1,13 +1,11 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calculate your carbon footprint!</title>
-    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
+    <title>Sign Up</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #b8face;
+            background-color: #f0f0f0;
             color: #333;
             display: flex;
             justify-content: center;
@@ -21,14 +19,9 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 50%;
-        }
-        h1 {
-            color: #4CAF50;
         }
         form p {
-            font-size: 0.9em;
-            text-align: left; /* Align form labels to the left */
+            font-size: 0.9em; /* Smaller font size for form labels */
         }
         button {
             background-color: #4CAF50;
@@ -45,11 +38,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calculate your carbon footprint!</h1>
+        <h1>Sign Up</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
 </body>

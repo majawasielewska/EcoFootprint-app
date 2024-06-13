@@ -1,11 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Your Carbon Footprint Result</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            background-color: #b8face;
             color: #333;
             display: flex;
             justify-content: center;
@@ -22,7 +24,7 @@
             width: 50%;
         }
         h1 {
-            color: #4682b4;
+            color: #4CAF50;
         }
         p {
             font-size: 0.9em; /* Smaller font size for detail text */
@@ -41,14 +43,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Your Carbon Footprint Result</h1>
-        <p>Name: <strong>{{ entry.user_name }}</strong></p>
-        <p>Energy Consumption: <strong>{{ entry.energy_consumption }} kWh</strong></p>
-        <p>Meat Consumption: <strong>{{ entry.meat_consumption }} kg per week</strong></p>
-        <p>Travel Distance: <strong>{{ entry.travel_distance }} km per week</strong></p>
-        <p>Waste Production: <strong>{{ entry.waste_production }} kg per week</strong></p>
+        <h1>Your carbon footprint result:</h1>
+        <p>Energy consumption: <strong>{{ entry.energy_consumption }} kWh per week</strong></p>
+        <p>Meat consumption: <strong>{{ entry.meat_consumption }} kg per week</strong></p>
+        <p>Travel distance: <strong>{{ entry.travel_distance }} km per week</strong></p>
+        <p>Waste production: <strong>{{ entry.waste_production }} kg per week</strong></p>
         <p class="total-footprint {% if total_footprint > 100 %}high-footprint{% else %}low-footprint{% endif %}">
-            Total Carbon Footprint: <strong>{{ total_footprint }} kg CO2 per week</strong>
+            Total carbon footprint: <strong>{{ total_footprint }} kg CO2 per week</strong>
+        {% if message %}
+        <p style="color: {{ message_color }};">{{ message }}</p>
+        {% endif %}
         </p>
     </div>
 </body>

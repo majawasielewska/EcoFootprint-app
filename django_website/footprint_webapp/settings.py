@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os 
-from google.cloud.sql.connector import Connector
-import pg8000
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,14 +27,10 @@ SECRET_KEY = 'django-insecure-xj@&8epl=31emqy#b4=+$a6p05ytx81!qt19@3(-u7#^-2us8v
 DEBUG = True
 
 # ALLOWED_HOSTS = [
-# 	
+# 	'footprintapp-cc-2024l.ew.r.appspot.com'
 # ]
 
-ALLOWED_HOSTS = [
-    '127.0.0.1', 
-    'localhost',
-    'footprintapp-cc-2024l.ew.r.appspot.com'
-    ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 
@@ -50,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'carbon_footprint_website',
-	
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'footprint_webapp.urls'
 
 # BASE_DIR / 'ecofootprint/templates' ?????
@@ -73,7 +68,7 @@ ROOT_URLCONF = 'footprint_webapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'carbon_footprint_website' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],  # Ensure this line is correct
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,41 +81,17 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'footprint_webapp.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-def get_postgresql_connection():
-    connector = Connector()
-    conn = connector.connect(
-        os.environ["INSTANCE_CONNECTION_NAME"],
-        "pg8000",
-        user=os.environ["DB_USER"],
-        password=os.environ["DB_PASSWORD"],
-        db=os.environ["DB_NAME"],
-    )
-    return conn
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ["DB_NAME"],
-        'USER': os.environ["DB_USER"],
-        'PASSWORD': os.environ["DB_PASSWORD"],
-        'HOST': os.environ["DB_HOST"],
-        'PORT': os.environ["DB_PORT"],
-        #'OPTIONS': {
-        #    'connection': get_postgresql_connection,
-        #}
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -165,10 +136,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+# settings.py
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# The directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional locations the staticfiles app will traverse if the FileSystemFinder is enabled.
+STATICFILES_DIRS = [BASE_DIR / 'static']
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Redirect after login
+LOGIN_REDIRECT_URL = 'calculate_footprint'
+#LOGOUT_REDIRECT_URL = 'login'
+
+LOGOUT_REDIRECT_URL = 'home'
+
+
