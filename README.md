@@ -13,7 +13,7 @@
 * set the environment variables (this is for Windows, on linux change `set` to `export` and add "" between the values of variables:
   * set DB_NAME=footprint_db
   * set DB_USER=postgres
-  * DB_PASSWORD=postgres
+  * set DB_PASSWORD=postgres
   * set DJANGO_SETTINGS_MODULE=footprint_webapp.settings
   * set INSTANCE_CONNECTION_NAME=footprintapp-cc-2024l:europe-west1:postgres-instance
   * set DB_HOST=127.0.0.1
