@@ -31,6 +31,16 @@ def calculate_footprint(request):
         if form.is_valid():
             footprint = form.save(commit=False)
             footprint.user = request.user
+            footprint.energy_consumption_footprint = footprint.energy_consumption * 0.233
+            footprint.meat_consumption_footprint = footprint.meat_consumption * 7.2
+            footprint.travel_distance_footprint = footprint.travel_distance * 0.21
+            footprint.waste_production_footprint = footprint.waste_production * 0.5
+            footprint.total_footprint = (
+                footprint.energy_consumption_footprint +
+                footprint.meat_consumption_footprint +
+                footprint.travel_distance_footprint +
+                footprint.waste_production_footprint
+            )
             footprint.save()
             return redirect('result')
     else:
@@ -41,12 +51,7 @@ def calculate_footprint(request):
 @login_required
 def result(request):
     latest_entry = UserFootprint.objects.filter(user=request.user).latest('date_created')
-    total_footprint = (
-            latest_entry.energy_consumption * 0.233 +
-            latest_entry.meat_consumption * 7.2 +
-            latest_entry.travel_distance * 0.21 +
-            latest_entry.waste_production * 0.5
-    )
+    total_footprint = latest_entry.total_footprint
     # return render(request, 'ecofootprint/result.html', {'entry': latest_entry, 'total_footprint': total_footprint})
     message = None
     message_color = None
@@ -63,4 +68,6 @@ def result(request):
 
 def account(request):
     user = request.user
+    user_data = UserFootprint.objects.filter(user=request.user)
+    print(user_data)
     return render(request, 'ecofootprint/user.html', {'user': user})
