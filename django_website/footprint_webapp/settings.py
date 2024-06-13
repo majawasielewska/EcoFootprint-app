@@ -14,12 +14,12 @@ from pathlib import Path
 import os
 
 import dj_database_url
-from google.cloud.sql.connector import Connector
-import pg8000
+
+# from google.cloud.sql.connector import Connector
+# import pg8000
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -39,10 +39,6 @@ ALLOWED_HOSTS = [
     'localhost',
     'footprintapp-cc-2024l.ew.r.appspot.com'
 ]
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -64,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'footprint_webapp.urls'
 
@@ -89,9 +84,7 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'footprint_webapp.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -113,7 +106,6 @@ if 'DATABASE_URL' in os.environ:
         default=os.environ.get('DATABASE_URL')
     )
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -132,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -143,7 +134,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -166,12 +156,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Additional locations the staticfiles app will traverse if the FileSystemFinder is enabled.
 STATICFILES_DIRS = [BASE_DIR / 'static']
-#STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Redirect after login
 LOGIN_REDIRECT_URL = 'calculate_footprint'
-#LOGOUT_REDIRECT_URL = 'login'
+# LOGOUT_REDIRECT_URL = 'login'
 
 LOGOUT_REDIRECT_URL = 'home'
-
-

@@ -4,6 +4,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import SignUpForm
 
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -15,11 +16,14 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
 
+
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
 
+
 class CustomLogoutView(LogoutView):
     template_name = 'accounts/logout.html'
+
 
 def signup(request):
     if request.method == 'POST':
@@ -36,8 +40,6 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+
 def home(request):
     return render(request, 'accounts/home.html')
-
-
-
