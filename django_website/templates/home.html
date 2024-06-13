@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f1f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .container a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 150px; /* Set a fixed width */
+            height: 40px; /* Set a fixed height */
+            box-sizing: border-box; /* Include padding in the width/height */
+        }
+        .container a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" width="180">
+        <h1>Welcome to carbon footprint calculation app!</h1>
+        <a href="{% url 'signup' %}">Sign up</a>
+        <a href="{% url 'login' %}">Log in</a>
+    </div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+        <h1>Welcome to Carbon footprint calculation app!</h1>
+        <a href="{% url 'signup' %}">Sign up</a>
+        <a href="{% url 'login' %}">Log in</a>
+    </div>
+</body>
+</html> -->
+
+
+
+
+
+
