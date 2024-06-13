@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b8face;
+            color: #333;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 50%;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        form p {
+            font-size: 0.9em;
+        }
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .topnav {
+            margin-top: 0;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            background-color: #d5e1df;
+            display: flex;
+            justify-content: space-between;
+    }
+        .topnav a{
+            color: white;
+            text-align: center;
+            font-size: 30px;
+            padding: 14px 0;
+            text-decoration: none;
+    }
+        .topnav a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+    {% if user.is_authenticated %}
+        <a href="{% url 'index'%}">Home</a>
+        <a href="{% url 'user' user.id%}">{{ user.username }}</a>
+        <a href="{% url 'calculate' %}">Calculate footprint</a>
+        {% else %}
+        <a href="{% url 'index'%}">Home</a>
+        <a href="{% url 'login' %}">Log in</a>
+    {% endif %}
+</div>
+{% block body %}{% endblock %}
+</body>
+</html>

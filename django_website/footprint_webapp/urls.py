@@ -38,6 +38,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ecofootprint/', include('carbon_footprint_website.urls')),
+    path('', include('carbon_footprint_website.urls')),
 ]
 
