@@ -1,49 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Calculate your carbon footprint!</title>
-    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #b8face;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 50%;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        form p {
-            font-size: 0.9em;
-            text-align: left; /* Align form labels to the left */
-        }
-        button {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
+{% extends "ecofootprint/base.html" %}
+
+{% block title %}Calculate your carbon footprint!{% endblock %}
+{% block body %}
+    <div class="wrapper">
     <div class="container">
         <h1>Calculate your carbon footprint!</h1>
         <form method="post">
@@ -52,5 +11,5 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-</body>
-</html>
+    </div>
+{% endblock %}

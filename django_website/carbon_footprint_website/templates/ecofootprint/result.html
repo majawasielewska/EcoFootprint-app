@@ -1,47 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Your Carbon Footprint Result</title>
-    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #b8face;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 50%;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        p {
-            font-size: 0.9em; /* Smaller font size for detail text */
-        }
-        .total-footprint {
-            font-size: 1.2em; /* Slightly larger for emphasis */
-            margin-top: 20px;
-        }
-        .low-footprint {
-            color: #32cd32; /* Green */
-        }
-        .high-footprint {
-            color: #ff0000; /* Red */
-        }
-    </style>
-</head>
-<body>
+{% extends "ecofootprint/base.html" %}
+
+{% block title %}Your Carbon Footprint Result{% endblock %}
+
+{% block body %}
+<div class="wrapper">
     <div class="container">
         <h1>Your carbon footprint result:</h1>
         <p>Energy consumption: <strong>{{ entry.energy_consumption }} kWh per week</strong></p>
@@ -55,5 +17,5 @@
         {% endif %}
         </p>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

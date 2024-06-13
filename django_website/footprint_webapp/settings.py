@@ -30,9 +30,6 @@ SECRET_KEY = 'django-insecure-xj@&8epl=31emqy#b4=+$a6p05ytx81!qt19@3(-u7#^-2us8v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = [
-# 	'footprintapp-cc-2024l.ew.r.appspot.com'
-# ]
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
