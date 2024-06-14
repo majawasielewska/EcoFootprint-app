@@ -21,11 +21,11 @@
             {% for data in user_data %}
             <tr>
                 <td>{{ data.date_created }}</td>
-                <td>{{ data.energy_consumption }}</td>
-                <td>{{ data.meat_consumption }}</td>
-                <td>{{ data.travel_distance }}</td>
-                <td>{{ data.waste_production }}</td>
-                <td>{{ data.total_footprint }}</td>
+                <td>{{ data.energy_consumption|floatformat:2 }}</td>
+                <td>{{ data.meat_consumption|floatformat:2 }}</td>
+                <td>{{ data.travel_distance|floatformat:2 }}</td>
+                <td>{{ data.waste_production|floatformat:2 }}</td>
+                <td>{{ data.total_footprint|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -47,11 +47,11 @@
             {% for agg_data in user_data_agg %}
             <tr>
                 <td>{{ agg_data.week|date:"Y-m-d" }}</td>
-                <td>{{ agg_data.mean_energy_consumption_footprint }}</td>
-                <td>{{ agg_data.mean_meat_consumption_footprint }}</td>
-                <td>{{ agg_data.mean_travel_distance_footprint }}</td>
-                <td>{{ agg_data.mean_waste_production_footprint }}</td>
-                <td>{{ agg_data.mean_total_footprint }}</td>
+                <td>{{ agg_data.mean_energy_consumption_footprint|floatformat:2 }}</td>
+                <td>{{ agg_data.mean_meat_consumption_footprint|floatformat:2 }}</td>
+                <td>{{ agg_data.mean_travel_distance_footprint|floatformat:2 }}</td>
+                <td>{{ agg_data.mean_waste_production_footprint|floatformat:2 }}</td>
+                <td>{{ agg_data.mean_total_footprint|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -69,11 +69,11 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ percentiles.energy }}</td>
-                <td>{{ percentiles.meat }}</td>
-                <td>{{ percentiles.travel }}</td>
-                <td>{{ percentiles.waste }}</td>
-            <td>{{ percentiles.total }}</td>
+                <td>{{ percentiles.energy|floatformat:2 }}</td>
+                <td>{{ percentiles.meat|floatformat:2 }}</td>
+                <td>{{ percentiles.travel|floatformat:2 }}</td>
+                <td>{{ percentiles.waste|floatformat:2 }}</td>
+            <td>{{ percentiles.total|floatformat:2 }}</td>
             </tr>
         </tbody>
     </table>

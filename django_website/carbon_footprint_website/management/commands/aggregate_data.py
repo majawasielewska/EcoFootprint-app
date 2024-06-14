@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 from django.db.models.functions import TruncWeek
 from datetime import datetime
 from django.utils import timezone
@@ -17,11 +17,11 @@ class Command(BaseCommand):
             UserFootprint.objects
             .annotate(week=TruncWeek('date_created'))
             .values('user', 'week')
-            .annotate(mean_energy_consumption_footprint=Avg('energy_consumption_footprint'))
-            .annotate(mean_meat_consumption_footprint=Avg('meat_consumption_footprint'))
-            .annotate(mean_travel_distance_footprint=Avg('travel_distance_footprint'))
-            .annotate(mean_waste_production_footprint=Avg('waste_production_footprint'))
-            .annotate(mean_total_footprint=Avg('total_footprint'))
+            .annotate(mean_energy_consumption_footprint=Sum('energy_consumption_footprint'))
+            .annotate(mean_meat_consumption_footprint=Sum('meat_consumption_footprint'))
+            .annotate(mean_travel_distance_footprint=Sum('travel_distance_footprint'))
+            .annotate(mean_waste_production_footprint=Sum('waste_production_footprint'))
+            .annotate(mean_total_footprint=Sum('total_footprint'))
         )
         today = timezone.localdate()
         one_week_ago = today - timedelta(days=7)
