@@ -3,7 +3,80 @@
 {% block body %}
     <div class="wrapper">
     <div class="container">
-        <h1>Todo user statistics for {{ user.username }}</h1>
+            <h1>Welcome, {{ user.username }}</h1>
+
+    <h2>Your last 5 activities provided</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Energy consumption</th>
+                <th>Meat consumed</th>
+                <th>Distance traveled</th>
+                <th>Waste produced</th>
+                <th>Total Carbon footprint</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in user_data %}
+            <tr>
+                <td>{{ data.date_created }}</td>
+                <td>{{ data.energy_consumption }}</td>
+                <td>{{ data.meat_consumption }}</td>
+                <td>{{ data.travel_distance }}</td>
+                <td>{{ data.waste_production }}</td>
+                <td>{{ data.total_footprint }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Average Carbon footprint from all weeks</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>Mean Carbon footprint from energy consumption</th>
+                <th>Mean Carbon footprint from meat consumed</th>
+                <th>Mean Carbon footprint from distance traveled</th>
+                <th>Mean Carbon footprint from waste produced</th>
+                <th>Mean total Carbon footprint</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agg_data in user_data_agg %}
+            <tr>
+                <td>{{ agg_data.week|date:"Y-m-d" }}</td>
+                <td>{{ agg_data.mean_energy_consumption_footprint }}</td>
+                <td>{{ agg_data.mean_meat_consumption_footprint }}</td>
+                <td>{{ agg_data.mean_travel_distance_footprint }}</td>
+                <td>{{ agg_data.mean_waste_production_footprint }}</td>
+                <td>{{ agg_data.mean_total_footprint }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        <h2>Your CO2 generation percentiles in the last week</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Mean energy consumption percentile</th>
+                <th>Mean meat consumed percentile</th>
+                <th>Mean distance traveled percentile</th>
+                <th>Mean waste produced percentile</th>
+                <th>Mean total Carbon footprint percentile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ percentiles.energy }}</td>
+                <td>{{ percentiles.meat }}</td>
+                <td>{{ percentiles.travel }}</td>
+                <td>{{ percentiles.waste }}</td>
+            <td>{{ percentiles.total }}</td>
+            </tr>
+        </tbody>
+    </table>
     </div>
     </div>
 {% endblock %}
