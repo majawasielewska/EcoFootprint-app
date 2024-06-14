@@ -7,5 +7,6 @@ urlpatterns = [
     path('result/', views.result, name='result'),
     path('signup/', views.signup, name='signup'),
     path('about/', views.about, name='about'),
-    path('account/', views.account, name='account')
+    path('account/', views.account, name='account'),
+    path('run-aggregation/', views.RunCommandView.as_view(), name='run_aggregation'),
 ]

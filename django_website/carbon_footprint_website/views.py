@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.core.management import call_command
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.views import View
 from .forms import UserFootprintForm
 from .models import UserFootprint, UserFootprintAggregation
 from django.contrib.auth.forms import UserCreationForm
 from scipy import stats
+
 
 
 def home(request):
@@ -104,3 +110,13 @@ def calculate_percentiles(user_data_agg, data_agg):
     percentiles["total"] = percentile_total
 
     return percentiles
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class RunCommandView(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            call_command('aggregate_data')
+            return JsonResponse({'status': 'success'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
